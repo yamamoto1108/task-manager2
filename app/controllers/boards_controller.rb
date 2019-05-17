@@ -2,12 +2,11 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   def index
-    boards = Board.all
-    render json: boards
+    @boards = Board.all
   end
 
   def show
-    render json: @board
+    # render json: @board
   end
 
   def new

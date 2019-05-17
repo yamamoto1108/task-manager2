@@ -1,0 +1,9 @@
+.boards
+  .boards__personal
+    %p Personal
+    - @boards.each do |board|
+      = link_to "#{board.name}", board_path(board.id)
+
+  .boards__team
+    %p Team
+
