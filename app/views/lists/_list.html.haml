@@ -1,7 +1,7 @@
-.list
+.list.item{data: { model_name: "list.class.name.underscore", update_url: list_sort_path(list)}}
   .list__name
     = list.name
-  .list__cards
+  .list__cards.card-sortable
     = render list.cards
   .card__add
     %button.btn.btn-outline-secondary

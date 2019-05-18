@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :sort]
+  protect_from_forgery except: :sort
 
   def index
     @board = board.find(params[:board_id])
@@ -51,6 +52,11 @@ class ListsController < ApplicationController
     end
   end
 
+  def sort
+    @list.update(list_params)
+    head :ok
+  end
+
   private
 
   def set_list
@@ -58,6 +64,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name).merge(board_id: params[:board_id])
+    params.require(:list).permit(:name, :row_order_position).merge(board_id: params[:board_id])
   end
 end

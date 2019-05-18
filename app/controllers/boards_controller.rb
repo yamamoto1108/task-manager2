@@ -1,11 +1,12 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: [:show, :edit, :update, :destroy, :sort]
 
   def index
     @boards = Board.all
   end
 
   def show
+    @lists = @board.lists.rank(:row_order)
     # render json: @board
   end
 
@@ -47,6 +48,12 @@ class BoardsController < ApplicationController
       format.html { redirect_to boards_url, notice: 'ボードを削除しました' }
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    list = @board.lists[params[:from].to_i]
+    list.insert_at(params[:to].to_i + 1)
+    head :ok
   end
 
   private
