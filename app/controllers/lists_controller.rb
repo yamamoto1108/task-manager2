@@ -1,15 +1,15 @@
 class ListsController < ApplicationController
+  before_action :set_board
   before_action :set_list, only: [:show, :edit, :update, :destroy, :sort]
   protect_from_forgery except: :sort
 
   def index
-    @board = board.find(params[:board_id])
     @lists = @board.lists
-    render json: lists
+    @list = List.new
+    @card = Card.new
   end
 
   def show
-    render json: @list
   end
 
   def new
@@ -18,38 +18,16 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    respond_to do |format|
-      if @list.save
-        format.html{ redirect_to @list, notice: 'リストを作成しました' }
-        format.json{ render :show, status: :created, location: @list }
-      else
-        format.html{ render :new }
-        format.json{ render json: @list.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def edit
   end
 
   def update
-    respond_to do |format|
-      if @list.update(list_params)
-        format.html{ redirect_to @list, notice: 'リストを更新しました' }
-        format.json{ render :show, status: :ok, location: @list }
-      else
-        format.html{ render :edit }
-        format.json{ render json: @list.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def destroy
     @list.destroy
-    respond_to do |format|
-      format.html{ redirect_to lists_url, notice: 'リストを削除しました' }
-      format.json{ head :no_content }
-    end
   end
 
   def sort
@@ -58,6 +36,10 @@ class ListsController < ApplicationController
   end
 
   private
+
+  def set_board
+    @board = Board.find(params[:board_id])
+  end
 
   def set_list
     @list = List.find(params[:id])

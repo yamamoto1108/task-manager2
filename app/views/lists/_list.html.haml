@@ -4,6 +4,6 @@
   .list__cards.card-sortable
     = render list.cards
   .card__add
-    = form_for [@board, @card] do |f|
+    = form_for @card do |f|
       = f.text_field :name, class: 'list__name__form', placeholder: 'Type Card Name'
       = f.submit 'Add Card', class: 'btn btn-outline-secondary'
