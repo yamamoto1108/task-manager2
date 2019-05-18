@@ -66,3 +66,5 @@ gem 'bootstrap', '~> 4.3.1'
 gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'ranked-model'
+gem 'jquery-ui-rails'

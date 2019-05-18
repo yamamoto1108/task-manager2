@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy, :move]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :sort]
+  protect_from_forgery except: :sort
 
   def index
     @list = List.find(params[:list_id])
@@ -51,6 +52,11 @@ class CardsController < ApplicationController
     end
   end
 
+  def sort
+    @card.update(card_params)
+    head :ok
+  end
+
   private
 
   def set_card
@@ -58,6 +64,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:name, :about, :deadline).merge(list_id: params[:list_id])
+    params.require(:card).permit(:name, :about, :deadline, :row_order_position).merge(list_id: params[:list_id])
   end
 end

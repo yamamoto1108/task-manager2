@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: 'boards#index'
 
   resources :boards
-  resources :lists
-  resources :cards
+  resources :lists do
+    put :sort
+  end
+  resources :cards do
+    put :sort
+  end
 end
