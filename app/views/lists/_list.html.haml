@@ -1,8 +1,9 @@
-.list.item{data: { model_name: "list.class.name.underscore", update_url: list_sort_path(list)}}
+.list.item{data: { model_name: "list.class.name.underscore"}}
   .list__name
     = list.name
   .list__cards.card-sortable
     = render list.cards
   .card__add
-    %button.btn.btn-outline-secondary
-      Add Card
+    = form_for [@board, @card] do |f|
+      = f.text_field :name, class: 'list__name__form', placeholder: 'Type Card Name'
+      = f.submit 'Add Card', class: 'btn btn-outline-secondary'
