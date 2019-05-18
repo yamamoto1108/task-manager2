@@ -1,0 +1,12 @@
+.board
+  = render partial: 'shared/board_menu'
+  .board__body
+    .board__lists.list-sortable
+      = render @lists
+    .list__add
+      .list__name
+        Add New List
+      .list__add__form
+        = form_for [@board, @list] do |f|
+          = f.text_field :name, class: 'list__name__form', placeholder: 'Type List Name'
+          = f.submit 'Add List', class: 'btn btn-outline-secondary'

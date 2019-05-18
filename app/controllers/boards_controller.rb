@@ -6,7 +6,6 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @lists = @board.lists.rank(:row_order)
     # render json: @board
   end
 
