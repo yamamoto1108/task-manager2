@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+%nav.navbar.navbar-expand-lg.navbar-light{style: "background-color: #e3f2fd;"}
   %a.navbar-brand{:href => "#"} 
     = @board.name
   %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", :type => "button"}
@@ -6,8 +6,9 @@
   #navbarNavDropdown.collapse.navbar-collapse
     %ul.navbar-nav
       %li.nav-item.active
-        %a.nav-link{:href => "#"}
-          Home
+        %a.nav-link
+          = link_to 'Add Card', new_board_card_path(@board), remote: true, class: 'btn btn-outline-secondary'
+          #card-form.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
           %span.sr-only (current)
       %li.nav-item
         %a.nav-link{:href => "#"} Features

@@ -1,5 +1,7 @@
-.card.item{data: { model_name: "list.class.name.underscore", update_url: card_sort_path(card)}}
+.card.item
   .card-title
-    = card.name
+    = link_to "#{card.name}", board_card_path(@board, card), remote: true
+    #card-show.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .card__deadline LIMIT :
   .card__deadline
-    deadline
+    = card.deadline

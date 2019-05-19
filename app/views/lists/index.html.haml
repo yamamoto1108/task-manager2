@@ -2,7 +2,7 @@
   = render partial: 'shared/board_menu'
   .board__body
     .board__lists.list-sortable
-      = render @lists
+      = render @lists, {board: @board, list: @list}
     .list__add
       .list__name
         Add New List

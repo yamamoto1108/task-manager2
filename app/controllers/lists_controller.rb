@@ -6,7 +6,7 @@ class ListsController < ApplicationController
   def index
     @lists = @board.lists
     @list = List.new
-    @card = Card.new
+    @list.cards.build
   end
 
   def show
@@ -14,10 +14,17 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    @list.cards.build
   end
 
   def create
-    @list = List.new(list_params)
+    @list = List.create(list_params)
+    redirect_to action: :index
+    # if @list.save
+    #   render json: { status: 'success' }
+    # else
+    #   render json: { status: 'error' }
+    # end
   end
 
   def edit
@@ -46,6 +53,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :row_order_position).merge(board_id: params[:board_id])
+    params.require(:list).permit(:name, :row_order_position, cards_attributes: [:name, :abput, :deadline]).merge(board_id: params[:board_id])
   end
 end

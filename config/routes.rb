@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :lists do
       put :sort
     end
+    resources :cards do
+      put :sort
+    end
   end
   
-  resources :cards do
-    put :sort
-  end
 end
