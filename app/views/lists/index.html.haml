@@ -1,6 +1,6 @@
 .board
   = render partial: 'shared/board_menu'
-  .board__body
+  .board__body{ style: 'background-image: url(@board.background.image)'}
     .board__lists.list-sortable
       = render @lists, {board: @board, list: @list}
     .list__add

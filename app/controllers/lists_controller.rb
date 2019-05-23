@@ -15,11 +15,15 @@ class ListsController < ApplicationController
   def new
     @list = List.new
     @list.cards.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @list = List.create(list_params)
-    redirect_to action: :index
+    redirect_to board_lists_path(@board.id)
     # if @list.save
     #   render json: { status: 'success' }
     # else

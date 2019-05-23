@@ -9,10 +9,9 @@ $(function(){
                       <%= render ${ list.cards } %>
                     </div>
                     <div class="card__add">
-                      <%= form_for @card do |f| %>
-                        <%= f.text_field :name, class: 'list__name__form', placeholder: 'Type Card Name' %>
-                        <%= f.submit 'Add Card', class: 'btn btn-outline-secondary' %>
-                      <% end %>
+                      <%= link_to 'Add Card', new_board_card_path(@board), remote: true, class: 'btn btn-outline-secondary' %>
+                      <div id="card-form" class="modal fade"{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"} >
+                      </div>
                     </div>
                   </div>`
       return html;

@@ -11,42 +11,25 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
+    @backgrounds = Background.all
   end
 
   def create
-    @board = Board.new(board_params)
-    respond_to do |format|
-      if @board.save
-        format.html { redirect_to @board, notice: 'ボードを作成しました' }
-        format.json { render :show, status: :created, location: @board }
-      else
-        format.html { render :new }
-        format.json { render json:@board.errors, status: :unprocessable_entity }
-      end
-    end
+    @board = Board.create(board_params)
+    redirect_to board_lists_path(@board)
   end
 
   def edit
   end
 
   def update
-    respond_to do |format|
-      if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'ボードを更新しました' }
-        format.json { render :show, status: :ok, location: @board }
-      else
-        format.html { render :edit }
-        format.json { render json:@board.errors, status: :unprocessable_entity }
-      end
-    end
+    @board = Board.update(board_params)
+    redirect_to board_lists_path(@board)
   end
 
   def destroy
-    @board.destroy
-    respond_to do |format|
-      format.html { redirect_to boards_url, notice: 'ボードを削除しました' }
-      format.json { head :no_content }
-    end
+    @board = Board.destroy
+    redirect_to :index
   end
 
   def sort
@@ -62,6 +45,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:name, :about, :deadline)
+    params.require(:board).permit(:name, :about, :deadline, :background_id)
   end
 end
