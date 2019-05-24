@@ -3,5 +3,6 @@ class Card < ApplicationRecord
   belongs_to :list
   ranks :row_order, with_same: :list_id
 
+
   validates :name, presence: true
 end
