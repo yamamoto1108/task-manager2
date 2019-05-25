@@ -4,9 +4,13 @@ html, body {
 }
 
 .boards {
-  background-color: pink;
+  //background-color: pink;
   overflow: scroll;
   height: calc(100% - 60px);
+  margin-left: 20px;
+  &__personal {
+    min-height: 150px;
+  }
 }
 
 .board {

@@ -11,13 +11,14 @@
           #card-form.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
           %span.sr-only (current)
       %li.nav-item
-        %a.nav-link{:href => "#"} Features
-      %li.nav-item
-        %a.nav-link{:href => "#"} Pricing
-      %li.nav-item.dropdown
-        %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          Dropdown link
-        .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
-          %a.dropdown-item{:href => "#"} Action
-          %a.dropdown-item{:href => "#"} Another action
-          %a.dropdown-item{:href => "#"} Something else here
+        %a.nav-link{:href => "/teams/#{@board.team.id}"}
+          = @board.team.name
+      -# %li.nav-item
+      -#   %a.nav-link{:href => "#"} Pricing
+      -# %li.nav-item.dropdown
+      -#   %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      -#     Dropdown link
+      -#   .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
+      -#     %a.dropdown-item{:href => "#"} Action
+      -#     %a.dropdown-item{:href => "#"} Another action
+      -#     %a.dropdown-item{:href => "#"} Something else here

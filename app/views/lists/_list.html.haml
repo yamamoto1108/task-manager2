@@ -3,6 +3,3 @@
     = list.name
   .list__cards.card-sortable
     = render list.cards
-  .card__add
-    = link_to 'Add Card', new_board_card_path(@board), remote: true, class: 'btn btn-outline-secondary'
-    #card-form.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}

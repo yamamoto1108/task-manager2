@@ -1,0 +1,14 @@
+.team_page
+  %h2 Team Page
+  .team__name
+    = @team.name
+  .team__about
+    = @team.about
+  %ul.team__users Team Member
+  - @team.users.each do |user|
+    %li.team__user
+      = link_to "#{user.name}", user_path(user.id)
+  .team__boards Team Boards
+  - @team.boards.each do |board|
+    .team__board
+      = link_to "#{board.name}", board_lists_path(board.id)

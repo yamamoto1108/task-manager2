@@ -6,7 +6,6 @@ class ListsController < ApplicationController
   def index
     @lists = @board.lists
     @list = List.new
-    @list.cards.build
   end
 
   def show
@@ -14,21 +13,14 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @list.cards.build
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create
     @list = List.create(list_params)
-    redirect_to board_lists_path(@board.id)
-    # if @list.save
-    #   render json: { status: 'success' }
-    # else
-    #   render json: { status: 'error' }
-    # end
+    respond_to do |format|
+      format.html { redirect_to board_lists_path(@board.id) }
+      format.json
+    end
   end
 
   def edit
@@ -57,6 +49,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :row_order_position, cards_attributes: [:name, :abput, :deadline]).merge(board_id: params[:board_id])
+    params.require(:list).permit(:name, :row_order_position).merge(board_id: params[:board_id])
   end
 end
