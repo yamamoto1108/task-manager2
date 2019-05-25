@@ -2,7 +2,8 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy, :sort]
 
   def index
-    @boards = Board.where(user_id: current_user.id)
+    @pboards = Board.where(user_id: current_user.id, team_id: nil)
+    @tboards = Board.where(user_id: current_user.id).where.not(team_id: nil)
   end
 
   def show
@@ -45,6 +46,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:name, :about, :deadline, :background_id).merge(user_id: current_user.id)
+    params.require(:board).permit(:name, :about, :deadline, :background_id, :team_id).merge(user_id: current_user.id)
   end
 end

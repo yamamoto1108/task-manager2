@@ -1,0 +1,31 @@
+.board__form
+  = form_for @team do |f|
+    .form-group
+      = f.label :name, class: 'form-controll-label'
+      = f.text_field :name, class: 'form-controll'
+    .form-group
+      = f.label :about, class: 'form-controll-label'
+      = f.text_area :about, class: 'form-controll'
+    .form-group
+      %label member
+      %input#member__search__field{placeholder: 'ユーザーのemailを入力', type: 'text', email: 'keyword'}
+      %button{class: "btn btn-outline-success",id: "member__search"} Search
+      #member__search__result
+
+      #team__members
+        .team__member
+          %input{name: "team[user_ids][]", type: "hidden", value: current_user.id}
+          %p.team__user__name
+            = current_user.name
+
+        - if users.present?
+          - users.each do |user|
+            .team__member
+              %input{name: "team[user_ids][]", type: "hidden", value: user.id}
+              %p.team__member__name
+                = user.name
+              %button{class: "team__member__delete btn btn-outline-danger"} Delete
+
+
+    .form-group
+      = f.submit "Save", class: "btn btn-primary"

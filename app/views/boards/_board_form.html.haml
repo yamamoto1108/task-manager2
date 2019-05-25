@@ -7,6 +7,9 @@
       = f.label :about, class: 'form-controll-label'
       = f.text_area :about, class: 'form-controll'
     .form-group
+      = f.label :team_id, class: 'form-controll-label'
+      = f.collection_select :team_id, current_user.teams.all, :id, :name, include_blank: true
+    .form-group
       = f.label :deadline, class: 'form-controll-label'
       = f.date_select :deadline, class: 'form-controll'
     .form-group.backgrounds

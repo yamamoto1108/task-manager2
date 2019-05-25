@@ -1,9 +1,10 @@
 .boards
   .boards__personal
     %p Personal
-    - @boards.each do |board|
-      
+    - @pboards.each do |board|  
       = link_to "#{board.name}", board_lists_path(board.id), class: "board__link"
 
   .boards__team
     %p Team
+    - @tboards.each do |board|  
+      = link_to "#{board.name}", board_lists_path(board.id), class: "board__link"
