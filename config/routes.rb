@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'boards#index'
 
   resources :users, only: [:show, :edit, :update]
+  resources :teams
 
   resources :boards do
     resources :lists do
