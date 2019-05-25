@@ -2,12 +2,15 @@
   = form_for @team do |f|
     .form-group
       = f.label :name, class: 'form-controll-label'
+      %br/
       = f.text_field :name, class: 'form-controll'
     .form-group
       = f.label :about, class: 'form-controll-label'
+      %br/
       = f.text_area :about, class: 'form-controll'
     .form-group
-      %label member
+      %label add member
+      %br/
       %input#member__search__field{placeholder: 'ユーザーのemailを入力', type: 'text', email: 'keyword'}
       %button{class: "btn btn-outline-success",id: "member__search"} Search
       #member__search__result
