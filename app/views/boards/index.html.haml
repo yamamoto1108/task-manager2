@@ -2,10 +2,13 @@
   %h2 My Boards
   .boards__personal
     %p Personal
-    - @pboards.each do |board|  
-      = link_to "#{board.name}", board_lists_path(board.id), class: "board__link"
+    - @pboards.each do |board|
+      = link_to "#{board.name}", board_lists_path(board.id), class: "board__link", style: "background-image: url(#{board.background.image})"
 
   .boards__team
     %p Team
-    - @tboards.each do |board|  
-      = link_to "#{board.name}", board_lists_path(board.id), class: "board__link"
+    - @tboards.each do |board|
+      .board__link{style: "background-image: url(#{board.background.image})"}
+        .bkrgba
+          .board__name
+            = link_to "#{board.name}", board_lists_path(board.id), class: "link"
