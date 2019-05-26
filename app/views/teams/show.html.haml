@@ -10,5 +10,7 @@
       = link_to "#{user.name}", user_path(user.id)
   .team__boards Team Boards
   - @team.boards.each do |board|
-    .team__board
-      = link_to "#{board.name}", board_lists_path(board.id)
+    .board__link{style: "background-image: url(#{board.background.image})"}
+      .bkrgba
+        .board__name
+          = link_to "#{board.name}", board_lists_path(board.id), class: "link"
